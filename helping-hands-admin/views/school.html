@@ -1,0 +1,7 @@
+<header id="header" style="background-color:#607D8B;" data-ng-include src="'template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include src="'template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>  
+
+    <section id="content" class="page-view" data-ui-view></section>
+</section>

@@ -1,0 +1,98 @@
+<div class="container" data-ng-controller="addschoolCtrl">
+         <div class="card">
+            <div class="listview lv-bordered lv-lg">
+                <div class="lv-header-alt clearfix">
+                    <h2 class="lvh-label">VIEW SCHOOL</h2>
+                    <div class="lvh-search" data-ng-show="mactrl.listviewSearchStat" data-ng-click="mactrl.listviewSearchStat">
+                        <form action="" method="post" class="searchform" id="">
+                            <input type="text" placeholder="Start typing..." ng-model="search" class="lvhs-input" ng-enter="">
+                        </form>
+                        <i class="lvh-search-close" data-ng-click="mactrl.listviewSearchStat = false; search = ''">&times;</i>
+                    </div>
+                    <ul class="lv-actions actions">
+                        <li>
+                            <a data-ng-click="mactrl.listviewSearchStat = true">
+                                <i class="zmdi zmdi-search"></i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#/school/addschool"><i class="zmdi zmdi-plus-circle-o"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                    <div class="lv-body" ng-repeat="data in schooldatas | filter:search | orderBy: 'schoolname' | pagination: curPage * pageSize | limitTo: pageSize" ng-show="schooldatas.length !== 0">
+                        <div class="lv-item media" >
+                            <div class="pull-left">
+                               <img class="lv-img-sm" src="img/profile.png" alt="" ng-show="data.img == undefined || data.img == null">
+                               <img class="lv-img-sm" ng-src="{{data.img}}" alt="" ng-show="data.img != undefined && data.img != null">
+                            </div> 
+                        <div class="media-body">
+                            
+                                <div class="lv-title"><b>{{data.schoolname}}</b></div>
+                                <small ng-show="data.mobile">{{data.mobile}}</small><br>
+                                <small ng-show="data.address">{{data.address}}, </small>
+                                <small ng-show="data.city">{{data.city}}, </small>
+                                <small ng-show="data.state">{{data.state}}</small>
+                                <ul class="lv-attrs">
+                                    <li ng-show="data.email">Email: {{data.email}} </li>
+                                    <li ng-show="data.username">Username: {{data.username}} </li>
+                                    <li ng-show="data.noofstudents">No of Students: {{data.noofstudents}} </li>
+                                </ul>  
+                               
+
+                                <div class="lv-actions actions dropdown" uib-dropdown>
+                                <a href="" uib-dropdown-toggle aria-expanded="true">
+                                    <i class="zmdi zmdi-more-vert" style="color: #607D8B !important;"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="#/school/improvements/{{data.$id}}"><i class="zmdi zmdi-sort-amount-desc" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Improvements</b> </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/school/forumchat/{{data.$id}}"><i class="zmdi zmdi-comment-alt-text" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Chat Forum</b> </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/school/directchat/{{data.$id}}"><i class="zmdi zmdi-comment-more" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Direct Chat</b> </a>
+                                    </li>
+                                    <li>
+                                        <a><i class="zmdi zmdi-money" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Send Money</b> </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/school/editschool/{{data.$id}}"><i class="zmdi zmdi-edit" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Edit</b> </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="deleteschool(data)"><i class="zmdi zmdi-delete" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Delete</b> </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                           
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" ng-show="schooldatas.length === 0">
+              <br><br><br>
+                <center>No school added yet.</center>
+                <br><br><br>
+            </div>
+             <div class="card-header ch-alt m-b-20" style="background-color: transparent !important; margin-top: 2em !important;" ng-show="schooldatas.length !== 0">
+                            <button class="btn btn-primary btn-icon" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"><i class="zmdi zmdi-caret-left" style="font-size: 2em !important;"></i></button>&nbsp;&nbsp;  
+                              <span>{{curPage + 1}} of {{ pagenum }}</span>&nbsp;&nbsp;  
+                            <button class="btn btn-primary btn-icon" ng-disabled="curPage >= schooldatas.length/pageSize - 1" ng-click="curPage = curPage+1" ><i class="zmdi zmdi-caret-right" style="font-size: 2em !important;"></i></button>
+                            <ul class="actions">
+                                <li>
+                                    <div class="btn-toolbar" role="toolbar" style=" padding-right: 2em !important; margin-top: 0.7em !important; float: right !important;">
+                                        <div class="btn-group" style="background : transparent !important;">
+                                            <button type="button" class="btn btn-primary" ng-click="numberOfPages(10)" ng-disabled="!(schooldatas.length > 10)">10</button>
+                                            <button type="button" class="btn btn-primary" ng-click="numberOfPages(25)" ng-disabled="!(schooldatas.length > 25)">25</button>
+                                            <button type="button" class="btn btn-primary" ng-click="numberOfPages(50)" ng-disabled="!(schooldatas.length > 50)">50</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>

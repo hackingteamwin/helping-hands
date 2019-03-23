@@ -1,0 +1,39 @@
+<ion-view view-title="My Activity" class="layout" hide-back-button="true">
+ <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()">
+  </div>
+  <h1 class="title" style="font-size:18px;padding-top:3px;">My Activity</h1>
+</ion-header-bar>
+  <ion-content class="has-header">
+        <div class="padding card"  ng-repeat="data in myactivity" ng-if="assignedstatus == true && myactivity != undefined">
+          
+            <div>
+                  <span class="font-head"> {{data.createddate}} </span><br>
+                  <div class="font-light" style="padding-top: 10px !important; width: 100% !important;"> {{data.activitydetails}}</div>
+            </div>
+          
+          <div style="padding-top: 10px !important;">
+            <a class="font-bold" href="#/app/editmyactivity/{{data.$id}}"> <font style="margin-right: 30px !important; font-size: 14px!important; color: #000 !important;" >EDIT</font></a>
+            <a class="font-bold" ng-click="deleteactivity(data)"> <font style="margin-right: 25px !important; font-size: 14px!important; color: #F57F17 !important;">DELETE</font></a>
+          </div>
+        </div>
+        <div  class="padding  item-text-wrap" ng-if="assignedstatus == true && myactivity == undefined">
+          <br><br>
+          <center>
+            No activity data added yet.
+          </center>
+          <br><br>
+        </div>
+    
+    
+    <div  class="padding  item-text-wrap" ng-if="assignedstatus == false">
+      <br><br>
+      <center>
+        Your request is still in pending status. Contact Administrator via direct chat.
+      </center>
+      <br><br>
+    </div>
+   
+  </ion-content>
+</ion-view>

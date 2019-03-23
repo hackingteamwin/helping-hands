@@ -1,0 +1,172 @@
+<div class="container" ng-controller="editvolunteerCtrl">
+    
+         <div class="card">
+                <div class="listview lv-bordered lv-lg">
+                    <div class="lv-header-alt clearfix">
+                        <h2 class="lvh-label">EDIT VOLUNTEER</h2>
+                        <h2 class="lvh-label" style="float: right !important;" ng-click="doTheBack()"> <i class="zmdi zmdi-chevron-left" style="font-size: 1em !important; margin-left: 0.5em !important;"></i>  Back</h2>
+                    </div>
+                </div>
+                 <div class="card-body card-padding">
+                    <form name="form">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Volunteer Name&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <input type="text" ng-model="volunteer.volunteername" class="form-control input-sm" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Address </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <input type="text" ng-model="volunteer.address" class="form-control input-sm" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">City&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <input type="text" ng-model="volunteer.city" class="form-control input-sm" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">State&nbsp;&nbsp; <font size="2" color="red">*</font>  </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <input type="text" ng-model="volunteer.state" class="form-control input-sm" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <!--second row -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <p class="c-black f-500 m-b-20">Email </p>
+
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <input type="text" ng-model="volunteer.email" class="form-control input-sm" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" autocomplete="off" name="email">
+                                        </div>
+                                        <div ng-show=" form.email.$error.pattern">
+                                             <span style="color: red !important;">Enter valid email address</span><br>
+                                    </div>
+                                    </div>
+                                </div>
+                            <div class="col-sm-6">
+                                    <p class="c-black f-500 m-b-20">Mobile No&nbsp;&nbsp; <font size="2" color="red">*</font></p>
+
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <input type="text" only-digits class="form-control input-sm" autocomplete="off" maxlength="10" ng-minlength="10"  ng-model="volunteer.mobile"  name="mobile">
+                                        </div>
+                                        <div ng-show="form.mobile.$error.minlength" >
+                                           <span style="color: red !important; float:left !important;">Mobile number should be 10 digits</span><br>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                        </div>
+                         <!-- third row -->
+                        <div class="row">
+
+                           <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">User Name&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <input type="text" ng-model="volunteer.username" class="form-control input-sm" autocomplete="off" ng-disabled="true">
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Password&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <input type="password" ng-model="volunteer.password" class="form-control input-sm" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                           <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Volunteer works done before(if any) </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <textarea ng-model="volunteer.worksdone" class="form-control input-sm" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Other Details </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <textarea ng-model="volunteer.otherdetails" class="form-control input-sm" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                           <div class="col-sm-6">
+                                <div class="select">
+                                    <p class="c-black f-500 m-b-20">Interested to Volunteer Village/School&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+                                    <select class="form-control"  ng-model="volunteer.interested" ng-change="getdata(volunteer.interested)" style="color: #000;" ng-disabled="true">
+                                        <option value='' disabled selected>Select Type</option>
+                                        <option value="Village">Village</option>   
+                                        <option value="School">School</option>   
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <div class="col-sm-6" ng-show="volunteer.interested == 'Village'">
+                                <div class="select">
+                                    <p class="c-black f-500 m-b-20">Select Village&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+                                    <select class="form-control"  ng-model="volunteer.village"  style="color: #000;" ng-change="getvname(volunteer.village)" ng-disabled="true">
+                                        <option value='' disabled selected>Select Village</option>
+                                        <option value="{{data.username}}" ng-repeat="data in villagedatas">{{data.villagename}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" ng-show="volunteer.interested == 'School'">
+                                <div class="select">
+                                    <p class="c-black f-500 m-b-20">Select School&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+                                    <select class="form-control"  ng-model="volunteer.school"  style="color: #000;" ng-change="getsname(volunteer.school)" ng-disabled="true">
+                                        <option value='' disabled selected>Select School</option>
+                                        <option value="{{data.username}}" ng-repeat="data in schooldatas">{{data.schoolname}}</option>   
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br><br>
+                        <div class="row">
+                            <div style="float:left !important;padding-left:15px;">
+                                <div class="btn-colors btn-demo">
+                                    <button class="btn btn-primary" type="submit" style="background-color: #607D8B !important;"  ng-disabled="form.mobile.$error.minlength || form.email.$error.pattern || !volunteer.volunteername || !volunteer.mobile ||  !volunteer.username || !volunteer.password || !volunteer.city || !volunteer.state || !volunteer.interested || (!volunteer.village && !volunteer.school)" ng-click="updatevolunteer(volunteer)">Update Volunteer</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                         </form> 
+                 </div>
+         </div>
+      
+</div>

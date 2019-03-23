@@ -1,0 +1,57 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <!--<ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>-->
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="expanded">
+            <img src="img/logo.png" class="avatar motion spin fade">
+            <div class="menu-bg">
+                Welcome to Helping Hands
+            </div> 
+        </ion-header-bar>
+    <ion-content>
+    <br><br><br><br><br>
+   
+
+      <ion-list id="sub-header">
+        <ion-item menu-close href="#/app/dashboard">
+         <b> <i class="isize icon ion-home"></i> Dashboard </b>
+        </ion-item>
+        <ion-item menu-close href="#/app/addneeds">
+         <b> <i class="isize icon ion-plus"></i> Add Needs </b>
+        </ion-item>
+        <ion-item menu-close href="#/app/viewneeds">
+         <b> <i class="isize icon ion-ios-paper"></i> View Needs </b>
+        </ion-item>
+        <ion-item menu-close href="#/app/addimprovement">
+         <b> <i class="isize icon ion-arrow-graph-up-right"></i> Add Improvements </b>
+        </ion-item>
+        <ion-item menu-close href="#/app/viewimprovement">
+         <b> <i class="isize icon ion-pie-graph"></i> View Improvements </b>
+        </ion-item>
+        <ion-item menu-close href="#/app/chatwithgroup">
+        <b> <i class="isize icon ion-chatboxes"></i> Chat in Group </b>
+        </ion-item>
+        <ion-item menu-close href="#/app/chatwithadmin">
+        <b> <i class="isize icon ion-chatbubble-working"></i> Chat with Admin </b>
+        </ion-item>        
+        <ion-item menu-close href="#/app/notification">
+          <b> <i class="isize icon ion-volume-high"></i> Notification</b>
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+        <b> <i class="isize icon ion-android-person"></i> Profile </b>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

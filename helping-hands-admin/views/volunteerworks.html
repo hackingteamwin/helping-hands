@@ -1,0 +1,41 @@
+<div class="container" ng-controller="editvolunteerCtrl">
+    
+         <div class="card">
+            <div class="listview lv-bordered lv-lg">
+                <div class="lv-header-alt clearfix">
+                    <h2 class="lvh-label">VIEW VOLUNTEER WORKS</h2>
+                    <h2 class="lvh-label" style="float: right !important;" ng-click="doTheBack()"> <i class="zmdi zmdi-chevron-left" style="font-size: 1em !important; margin-left: 0.5em !important;"></i>  Back</h2>
+                    <div class="lvh-search" data-ng-show="mactrl.listviewSearchStat" data-ng-click="mactrl.listviewSearchStat">
+                        <form action="" method="post" class="searchform" id="">
+                            <input type="text" placeholder="Start typing..." ng-model="search1" class="lvhs-input" ng-enter="">
+                        </form>
+                        <i class="lvh-search-close" data-ng-click="mactrl.listviewSearchStat = false; search1 = ''">&times;</i>
+                    </div>
+                    <ul class="lv-actions actions">
+                        <li>
+                            <a  data-ng-click="mactrl.listviewSearchStat = true">
+                                <i class="zmdi zmdi-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+         
+                 <div class="lv-body" ng-repeat="data in activitydata | orderBy: '-' | filter: search1" ng-show="activitydata.length !== 0">
+                        <div class="lv-item media">
+                        <div class="media-body">
+                                <div style="padding-right: 10px !important;"><b>{{data.volunteername}} | {{data.date}}</b></div> 
+                                <div style="padding-right: 10px !important;"><b>{{data.activitydetails}}</b></div>    
+                        </div>
+                        </div>
+                </div>
+                <div class="card-body" ng-show="activitydata.length === 0">
+                  <br><br><br>
+                    <center>No volunteering works added yet.</center>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+</div>
+

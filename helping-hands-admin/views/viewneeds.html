@@ -1,0 +1,119 @@
+<div class="container" data-ng-controller="addneedsCtrl">
+         <div class="card">
+            <div class="listview lv-bordered lv-lg">
+                <div class="lv-header-alt clearfix">
+                    <h2 class="lvh-label">VIEW NEEDS</h2>
+                    <div class="lvh-search" data-ng-show="mactrl.listviewSearchStat" data-ng-click="mactrl.listviewSearchStat">
+                        <form action="" method="post" class="searchform" id="">
+                            <input type="text" placeholder="Start typing..." ng-model="search" class="lvhs-input" ng-enter="">
+                        </form>
+                        <i class="lvh-search-close" data-ng-click="mactrl.listviewSearchStat = false; search = ''">&times;</i>
+                    </div>
+                    <ul class="lv-actions actions">
+                        <li>
+                            <a  data-ng-click="mactrl.listviewSearchStat = true">
+                                <i class="zmdi zmdi-search"></i>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#/needs/addneeds"><i class="zmdi zmdi-plus-circle-o"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                   <div class="card-body" ng-show="needsdatas.length !== 0">
+                      <div class="table-responsive">
+                         <table  class="table table-striped table-vmiddle">
+                            <thead>
+                                <tr>
+                                  <th style="color: #607D8B !important;">Title</th>
+                                  <th style="color: #607D8B !important;">Type</th>
+                                  <th style="color: #607D8B !important;">Need For</th>
+                                  <th style="color: #607D8B !important;">Date</th>
+                                  <th style="color: #607D8B !important;">Status</th>
+                                  <th style="color: #607D8B !important;">Action</th>
+                                  <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in needsdatas | filter:search | orderBy: '-' | pagination: curPage * pageSize | limitTo: pageSize">
+                                    <td class="f-500 c-black">{{data.title}}</td>
+                                    <td class="f-500 c-black">{{data.type}}</td>
+                                    <td class="f-500 c-black" ng-show="data.village">{{data.villagename}}</td>
+                                    <td class="f-500 c-black" ng-show="data.school">{{data.schoolname}}</td>
+                                    <td class="f-500 c-black">{{data.date}}</td>
+                                    <td class="f-500 c-black" ng-show="data.donestatus == undefined || data.donestatus == null || data.donestatus == false">Not Done</td>
+                                    <td class="f-500 c-black" ng-show="data.donestatus == true">Done</td>
+                                    <td class="f-500 c-black" ng-click="markdone(data)" ng-show="data.donestatus == undefined || data.donestatus == null || data.donestatus == false">
+                                      <button class="button" style="background-color: #2C8423 !important; border: none !important; border-radius: 30px !important; color: #fff !important; padding: 5px !important; width: 120px !important;">Mark Done</button></td>
+                                    <td class="f-500 c-black" ng-click="marknotdone(data)" ng-show="data.donestatus == true"><button class="button" style="background-color: #DAC76D !important; border: none !important; border-radius: 30px !important; color: #fff !important; padding: 5px !important; width: 120px!important;">Mark Not Done</button></td>
+                                    <td> 
+                                      <a href="#/needs/editneeds/{{data.$id}}" tooltip-placement="bottom" uib-tooltip="Edit" tooltip-trigger="mouseenter" tooltip-enable="!inputModel"><i class="zmdi zmdi-edit" style="font-size: 15px; color: #607D8B;"></i> </a> &nbsp;&nbsp;&nbsp;
+                                      <a ng-click="deleteneeds(data)" tooltip-placement="bottom" uib-tooltip="delete" tooltip-trigger="mouseenter" tooltip-enable="!inputModel"><i class="zmdi zmdi-delete" style="font-size: 15px; color: #607D8B;"></i> </a> &nbsp;&nbsp;&nbsp;
+                                      <a data-toggle="modal" data-target="#viewdetail" ng-click="getdetail(data.$id)" tooltip-placement="bottom" uib-tooltip="View All" tooltip-trigger="mouseenter" tooltip-enable="!inputModel"><i class="zmdi zmdi-eye" style="font-size: 15px; color: #607D8B;"></i> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                         </table>
+                      </div>
+                      <div class="card-header ch-alt m-b-20" style="background-color: transparent !important; margin-top: 2em !important;" ng-show="needsdatas.length !== 0">
+                            <button class="btn btn-primary btn-icon" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"><i class="zmdi zmdi-caret-left" style="font-size: 2em !important;"></i></button>&nbsp;&nbsp;  
+                              <span>{{curPage + 1}} of {{ pagenum }}</span>&nbsp;&nbsp;  
+                            <button class="btn btn-primary btn-icon" ng-disabled="curPage >= needsdatas.length/pageSize - 1" ng-click="curPage = curPage+1" ><i class="zmdi zmdi-caret-right" style="font-size: 2em !important;"></i></button>
+                            <ul class="actions">
+                                <li>
+                                    <div class="btn-toolbar" role="toolbar" style=" padding-right: 2em !important; margin-top: 0.7em !important; float: right !important;">
+                                        <div class="btn-group" style="background : transparent !important;">
+                                            <button type="button" class="btn btn-primary" ng-click="numberOfPages(10)" ng-disabled="!(needsdatas.length > 10)">10</button>
+                                            <button type="button" class="btn btn-primary" ng-click="numberOfPages(25)" ng-disabled="!(needsdatas.length > 25)">25</button>
+                                            <button type="button" class="btn btn-primary" ng-click="numberOfPages(50)" ng-disabled="!(needsdatas.length > 50)">50</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                </div>
+                    </div>
+                </div>
+                <div class="card-body" ng-show="needsdatas.length === 0">
+              <br><br><br>
+                <center>No needs added yet.</center>
+                <br><br><br>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="viewdetail" role="dialog" data-ng-controller="addneedsCtrl">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"><i class="zmdi zmdi-close-circle"></i></button>
+                   <h4 class="modal-title">Need Details</h4>
+                </div><br>
+                <div class="modal-body">
+                    <form name="form">
+                      <div class="row">
+                        <div class="col-sm-12" style="margin-top: 1.5em !important;"> 
+                           <div class="form-group fg-line">
+                              <label>Title : &nbsp;  {{needsdata.title}}</label>
+                           </div>
+                            <div class="form-group fg-line">
+                               <label>Type : &nbsp; {{needsdata.type}}</label>
+                            </div>
+                            <div class="form-group fg-line" ng-show="needsdata.village">
+                               <label>Village : &nbsp; {{needsdata.villagename}}</label>
+                            </div>
+                            <div class="form-group fg-line" ng-show="needsdata.school">
+                               <label>School : &nbsp; {{needsdata.schoolname}}</label>
+                            </div>
+                            <div class="form-group fg-line">
+                               <label>Details : &nbsp; {{needsdata.details}}</label>
+                            </div>
+                        </div>
+                      </div>
+                    </form>            
+                </div>
+            </div>
+        </div>
+    </div>

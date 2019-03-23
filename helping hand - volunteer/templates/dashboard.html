@@ -1,0 +1,39 @@
+<ion-view view-title="Dashboard" class="layout" hide-back-button="true">
+ <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()">
+  </div>
+  <h1 class="title" style="font-size:18px;padding-top:3px;">Dashboard</h1>
+</ion-header-bar>
+  <ion-content class="has-header">
+    <div class="w3-display-container">
+       <img class="full-image" src="img/banner.jpg" alt="" style="width: 100% !important; height: 13em !important;">
+    </div>
+    <div class="card item-text-wrap" ng-repeat="data in needsdata" ng-if="assignedstatus == true && needsdata.length !== 0" style="padding: 15px !important;">
+      <a href="#/app/addneeds/{{data.$id}}">
+       
+          <div>
+                <span class="font-head"> {{data.title}} </span><br>
+                <span class="font-light"> {{data.details}}</span><br>
+                <!--<span class="font-light"> {{data.createddate}}</span>-->
+          </div>
+           <div style="padding-top: 10px !important;font-size: 11.5px !important;color: #757575 !important;"><span style="float: left !important;">{{data.createddate}}</span><span style="float: right !important;">10.00AM</span></div>
+      </div>
+        
+      </a>
+    </div>
+    <div  class="padding  item-text-wrap" ng-if="assignedstatus == true && needsdata.length === 0">
+      <center>
+        No needs data added yet.
+      </center>
+    </div>
+    <div  class="padding  item-text-wrap" ng-if="assignedstatus == false">
+      <br><br>
+      <center>
+        Your request is still in pending status. Contact Administrator via direct chat.
+      </center>
+      <br><br>
+    </div>
+   
+  </ion-content>
+</ion-view>

@@ -1,0 +1,39 @@
+<ion-view hide-nav-bar="true" can-swipe-back="false">
+  <ion-content  class="padding iniLogin">
+    <br><br>
+    <form name="form"> 
+       <center><img ng-src="img/logoo.png" width="120" > </center>
+    <p class='headerh1' align='center'>Helping Hands</p>
+        <div class='list list-icon authheight'>
+                  <div class='row'>
+                    <div class='col-10 rowicon'>
+                    <i class='icon ion-android-contact authicon'></i>
+                    </div>
+                    <div class='col-90 rowtext'>
+                         <label class='item item-input item-floating-label' >
+                                <input type='text' placeholder='Username' ng-model='village.username' style='color: #000000;' autocomplete='off'>
+                            </label> 
+                    </div>
+                  </div> 
+
+                  <div class='row'>
+                    <div class='col-10 rowicon'>
+                    <i class='icon ion-locked authicon'></i>
+                    </div>
+                    <div class='col-80 rowtext'>
+                        <label class='item item-input item-floating-label' >
+                              <input type="{{inputType}}" placeholder='Password' ng-model='village.password' style='color: #000000;' autocomplete='off'>
+                        </label> 
+                    </div>
+                    <div class='col-10 rowicon' ng-click="hideShowPassword()">
+                    <i ng-class="{'icon ion-eye' : !hideshow, 'icon ion-eye-disabled' : hideshow}" ng-click="hideshow = !hideshow" style="color: #F57F17 !important; font-size: 20px !important;"></i>
+                    </div>
+                  </div> 
+
+                 
+                  <button class='signupBtn' ng-click='login(village)' ng-disabled='!village.username || !village.password'>Login</button>
+                  <div class="cont text-wrap">Don't have an account ? <a href="#/signup" style="color:#607D8B"><u>Signup</u></a></div>
+        </div> 
+      </form>  
+  </ion-content>
+</ion-view>

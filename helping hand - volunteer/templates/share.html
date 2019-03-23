@@ -1,0 +1,38 @@
+<ion-view view-title="Share" class="layout" hide-back-button="true">
+ <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()"></button>
+  </div>
+  <h1 class="title" style="font-size:18px;padding-top:3px;  padding-left:1.5em;">Share</h1>
+</ion-header-bar>
+  <ion-content>
+      
+<div class=" padding">
+  <center><img src="img/share.png" height="400px" width="100%"></center><br><br>
+  <center><p class="font-light">Share App Via</p></center>
+  <div class="row ">       
+          <div class="col-33" ng-click="whatsapp()">
+          <button class="button button-block button-positive" style="width: 50px; border-radius: 50%; height: 50px; background-color: #1c9a12;">
+                <i class="icon ion-social-whatsapp"></i>
+              </button> 
+                <p class="icontile" style="margin-top: 1em;">WhatsApp</p>
+          </div>
+         
+         <div class="col-33" ng-click="sms()">          
+             <center><button class="button button-block button-positive" style="width: 50px; border-radius: 50%; height: 50px; background-color: #1976d2;">
+                <i class="icon ion-android-textsms"></i>
+              </button>
+              <p class="icontile" style="margin-top: 1em;">Messenger</p></center>
+          </div>
+          
+          <div class="col-33" ng-click="twitter()">          
+               <button class="button button-block button-positive" style="width: 50px; border-radius: 50%; height: 50px; background-color: #11c1ff;float: right;">
+                <i class="icon ion-social-twitter"></i>
+              </button>
+              <p class="text-right icontile" style="margin-top: 5.3em; margin-right: 0.5em !important;">Twitter</p>
+          </div>
+        </div><br>
+    </div>
+   
+	</ion-content>
+</ion-view>

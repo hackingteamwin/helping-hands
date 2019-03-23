@@ -1,0 +1,31 @@
+<div class="login-content" data-ng-app="materialAdmin" data-ng-controller="loginCtrl as lctrl" style="padding-top:130px !important;">
+        <!-- Login -->
+        <div class="lc-block" id="l-login" data-ng-class="{ 'toggled': lctrl.login === 1 }" data-ng-if="lctrl.login === 1">
+         <img class="lcb-user" src="img/logo.png" alt="" style="height: 100px; width: 100px;">
+         <br>
+          <center><flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash)"></flash-message></center>
+            <center><h3 style="color: #3E3A3B !important;">Helping Hands </h3></center>
+           <br>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account" style="color: #535152 !important;"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Username" ng-model="logindata.username" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-lock" style="color: #535152 !important;"></i></span>
+                <div class="fg-line">
+                    <input type="{{inputType}}" class="form-control" placeholder="Password" ng-model="logindata.password" autocomplete="off" ng-enter="login(logindata)">
+                </div>
+                <span class="input-group-addon" ng-click="hideShowPassword()" style="color: #673AB7 !important;">
+                    <i ng-class="{'zmdi zmdi-eye' : !hideshow, 'zmdi zmdi-eye-off' : hideshow}" ng-click="hideshow = !hideshow" style="color: #535152 !important;"></i>
+                </span>               
+            </div>
+
+           <br> 
+       
+           <button class="btn btn-cyan" style="background-color:#607D8B !important;" ng-disabled="!logindata.password || !logindata.username" ng-click="login(logindata)"><font color="white"><b><i class="zmdi zmdi-lock-open"></i>&nbsp;&nbsp;Login</b></font></button>
+          <br><br>
+        </div>
+</div>

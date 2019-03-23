@@ -1,0 +1,70 @@
+<ion-view view-title="Chat With Admin">
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()">
+  </div>
+  <h1 class="title" style="font-size:20px;">Chat With Admin</h1>
+</ion-header-bar>
+<ion-content has-bouncing="true" class="has-header has-footer" 
+              delegate-handle="userMessageScroll"><br>
+              <div ng-if="length === 0"><br><br>
+      			  	<center><p style="font-size:18px;color:gray;">Here you can discuss with admin</p></center>
+      			     <br><br>
+              </div>
+            
+              <div ng-repeat="message in datas" class="message-wrapper">
+                 
+                  <div ng-if="length !== 0 && username !== message.username">
+                      
+                    <img class="profile-pic left" ng-src="{{message.img}}" ng-if="message.img != null">
+                    <img class="profile-pic left" src="img/logo.png" ng-if="message.img == null">
+      
+                      <div class="chat-bubble left">
+      
+                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                          </div>
+      
+                          <div class="message-detail">
+                              <span class="bold">{{message.username}}</span>,
+                              <span style="font-family:timesnewroman;">{{message.time}}</span>
+                          </div>
+      
+                      </div>
+                  </div>
+      
+                  <div ng-if="length !== 0 && username === message.username">
+                    
+                      <img class="profile-pic right" ng-src="{{message.img}}" ng-if="message.img != null">
+                      <img class="profile-pic right" src="img/profile.png" ng-if="message.img == null">
+                    
+                      <div class="chat-bubble right">
+      
+                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                          </div>
+      
+                          <div class="message-detail">
+                              <span class="bold">{{message.username}}</span>,
+                              <span style="font-family:timesnewroman;">{{message.time}}</span>
+                          </div>
+      
+                      </div>
+                    
+                  </div>
+      
+                  <div class="cf"></div>
+      
+              </div>
+          </ion-content>
+      
+          <form name="form">
+              <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+                  <label class="item-input-wrapper">
+                      <textarea ng-model="input.text" placeholder="Type your a message..." required minlength="1" maxlength="1500" msd-elastic style="width: 100% !important;padding-top: 10px !important;padding-left: 5px !important;"></textarea>
+                  </label>
+                  <div class="footer-btn-wrap">
+                    <button class="button button-clear button-icon icon ion-android-send footer-btn" ng-disabled="!input.text || input.text === ''" ng-click="send(input)" style="color:#607D8B !important;">
+                    </button>
+                  </div>
+              </ion-footer-bar>
+          </form>
+    </ion-view>

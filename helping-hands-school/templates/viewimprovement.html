@@ -1,0 +1,40 @@
+<ion-view view-title="View Improvements" class="layout" hide-back-button="true">
+ <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()">
+  </div>
+  <h1 class="title" style="font-size:18px;padding-top:3px;">View Improvements</h1>
+</ion-header-bar>
+  <ion-content class="has-header">
+    <!-- <div class="padding card item-text-wrap"  ng-repeat="data in improvements">
+      <div class="row">
+        <div class= "col col-80">
+              <span class="font-head"> {{data.createddate}} </span><br>
+              <span class="font-light"> {{data.impdetails}}</span><br>
+        </div>
+      </div>
+      <div class="row">
+            <a href="#/app/editimprovement/{{data.$id}}"> <font style="margin-right: 30px !important; font-size: 13px!important; color: #1A237E !important;" >EDIT</font></a>
+            <a ng-click="deleteimp(data.$id)"> <font style="margin-right: 25px !important; font-size: 13px!important; color: #1A237E !important;">DELETE</font></a>
+      </div>
+    </div> -->
+
+    <div class="card padding"  ng-repeat="data in improvements" ng-if="improvements.length !== 0">
+      <div >       
+              <span class="font-head"> {{data.createddate}} </span><br>
+              <div class="font-light" style="padding-top: 10px !important;"> {{data.impdetails}} </div>
+              <div style="padding-top: 10px !important;">
+            <a class="font-bold"  href="#/app/editimprovement/{{data.$id}}" > <font style=" margin-right: 30px !important; color: #000 !important;font-size: 14px !important;">EDIT</font></a>
+            <a class="font-bold" ng-click="deleteimp(data.$id)"> <font style="margin-right: 25px !important; font-size: 14px !important;color: #F57F17 !important;" >DELETE</font></a>
+          </div>
+      </div>
+    </div>
+    <div class="padding"   ng-if="improvements.length === 0">
+      <div >       
+        <br><br>
+              <center><span class="font-head">No improvement data added yet. </span></center>
+        <br><br>   
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

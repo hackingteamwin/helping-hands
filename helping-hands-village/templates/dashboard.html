@@ -1,0 +1,34 @@
+<ion-view view-title="Dashboard" class="layout" hide-back-button="true">
+ <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()">
+  </div>
+  <h1 class="title" style="font-size:18px;padding-top:3px;">Dashboard</h1>
+</ion-header-bar>
+  <ion-content class="has-header">
+    <div class="w3-display-container">
+       <img class="full-image" src="img/banner.jpg" alt="" style="width: 100% !important; height: 13em !important;">
+    </div>
+      <div ng-repeat="datas in needsdata" ng-if="testflag === true">
+           <div class="card item-text-wrap" style="padding: 15px !important;" ng-repeat="data in datas.help">
+          
+            <div>
+                  <span class="font-head"> {{data.volumteername}} </span><br>
+                  <span class="font-light"> {{data.activitydetails}}</span><br>
+             </div>
+            <div style="padding-top: 10px !important;font-size: 11.5px !important;color: #757575 !important;"><span style="float: left !important;">{{data.date}}</span><span style="float: right !important;">{{data.time}}</span></div>
+          </div>
+      </div>
+     
+       <div class=" item-text-wrap" style="padding: 15px !important;"  ng-if="testflag != true">
+      
+        <div>
+          <br><br>
+             <center><span class="font-head">   No volunteer activity  data added yet.</span></center>
+            <br><br>
+         </div>
+        
+      </div>  
+  </ion-content>
+</ion-view>
+

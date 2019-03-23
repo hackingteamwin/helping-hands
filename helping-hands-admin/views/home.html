@@ -1,0 +1,188 @@
+<header id="header" style="background-color: #607D8B;" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>   
+    <section id="content" data-ng-controller="homeCtrl">
+            <div class="container">
+                    <div class="block-header">
+                        <h2>Dashboard</h2>
+                    </div>
+                    <br>
+                    <div class="mini-charts">
+                        <div class="row">
+                          
+                           <div class="col-sm-4 col-md-4">
+                                <div class="mini-charts-item bgm-deeppurple">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"> <img src="img/village.png" alt="" style="height: 4em !important; width: 4em !important;"></div>
+                                        <div class="count">
+                                            <small style="font-size: 1.2em !important;">Total Villages</small>
+                                            <h2>{{villagecount}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="mini-charts-item bgm-deeppurple">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"> <img src="img/school.png" alt="" style="height: 4em !important; width: 5em !important;"></div>
+                                        <div class="count">
+                                            <small style="font-size: 1.2em !important;">Total Schools</small>
+                                            <h2>{{schoolcount}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="mini-charts-item bgm-deeppurple">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"> <img src="img/volunteer.png" alt="" style="height: 4em !important; width: 4.7em !important;"></div>
+                                        <div class="count">
+                                            <small style="font-size: 1.2em !important;">Total Volunteers</small>
+                                            <h2>{{volunteercount}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="card">
+                           <div class="listview lv-bordered lv-lg">
+                                <div class="lv-header-alt clearfix">
+                                    <h2 class="lvh-label">VILLAGES LIST</h2>
+                                        <ul class="lv-actions actions">
+                                            <li>
+                                               <a type="reset" href="#/village/viewvillage">
+                                                    <i class="zmdi zmdi-eye"></i>
+                                                </a>
+                                            </li>
+                                            <li>    
+                                        </ul>
+                                    </div>
+                                </div>    
+                                <br>                
+                                <div class="card-body" ng-show="villagedatas.length !== 0">
+                                    <div class="table-responsive">
+                                        <table  class="table table-striped table-vmiddle">
+                                            <thead>
+                                                        <tr>
+                                                            <th style="color:#607D8B !important;">Village Name</th>
+                                                            <th style="color:#607D8B !important;">Mobile</th>
+                                                            <th style="color:#607D8B !important;">No of People</th>
+                                                            <th style="color:#607D8B !important;">City</th>
+                                                            <th style="color:#607D8B !important;">State</th>
+                                                        </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="data in villagedatas | limitTo: 10 | reverse">
+                                                <td class="f-500 c-black">{{data.villagename}}</td>
+                                                <td class="f-500 c-black">{{data.mobile}}</td>
+                                                <td class="f-500 c-black">{{data.noofpeople}}</td>  <td class="f-500 c-black">{{data.city}}</td>
+                                                <td class="f-500 c-black">{{data.state}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-body" ng-show="villagedatas.length === 0">
+                                    <br><br><br>
+                                       <center> No villages added yet.</center>
+                                    <br><br><br>
+                                </div>
+                    </div>
+                    <div class="card">
+                        <div class="listview lv-bordered lv-lg">
+                            <div class="lv-header-alt clearfix">
+                                <h2 class="lvh-label">SCHOOL LIST</h2>
+                                    <ul class="lv-actions actions">
+                                        <li>
+                                            <a type="reset" href="#/school/viewschool">
+                                                <i class="zmdi zmdi-eye"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>       
+                           <br>                
+                            <div class="card-body" ng-show="schooldatas.length !== 0">
+                                <div class="table-responsive">
+                                    <table  class="table table-striped table-vmiddle">
+                                        <thead>
+                                                    <tr>
+                                                        <th style="color:#607D8B !important;">School Name</th>
+                                                        <th style="color:#607D8B !important;">Mobile</th>
+                                                        <th style="color:#607D8B !important;">No of Students</th>
+                                                        <th style="color:#607D8B !important;">City</th>
+                                                        <th style="color:#607D8B !important;">State</th>
+                                                    </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="data in schooldatas | filter:stats1 | limitTo: 10 | reverse">
+                                            <td class="f-500 c-black">{{data.schoolname}}</td>
+                                            <td class="f-500 c-black">{{data.mobile}}</td>
+                                            <td class="f-500 c-black">{{data.noofstudents}}</td>
+                                            <td class="f-500 c-black">{{data.city}}</td> 
+                                            <td class="f-500 c-black">{{data.state}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-body" ng-show="schooldatas.length === 0">
+                                <br><br><br>
+                                    <center> No school added yet.</center>
+                                <br><br><br>
+                            </div>
+                    </div>     
+                    <div class="card">
+                        <div class="listview lv-bordered lv-lg">
+                            <div class="lv-header-alt clearfix">
+                                <h2 class="lvh-label">VOLUNTEER LIST</h2>
+                                    <ul class="lv-actions actions">
+                                        <li>
+                                            <a type="reset" href="#/volunteer/viewvolunteer">
+                                                <i class="zmdi zmdi-eye"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>       
+                           <br>                
+                            <div class="card-body" ng-show="volunteerdatas.length !== 0">
+                                <div class="table-responsive">
+                                    <table  class="table table-striped table-vmiddle">
+                                        <thead>
+                                                    <tr>
+                                                        <th style="color:#607D8B !important;">Volunteer Name</th>
+                                                        <th style="color:#607D8B !important;">Mobile</th>
+                                                        <th style="color:#607D8B !important;">City</th>
+                                                        <th style="color:#607D8B !important;">State</th>
+                                                        <th style="color:#607D8B !important;">Status</th>
+                                                    </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="data in volunteerdatas | limitTo: 10 | reverse">
+                                            <td class="f-500 c-black">{{data.volunteername}}</td>
+                                            <td class="f-500 c-black">{{data.mobile}}</td>
+                                            <td class="f-500 c-black">{{data.city}}</td> 
+                                            <td class="f-500 c-black">{{data.state}}</td>
+                                            <td class="f-500 c-black" ng-show="data.assignedstatus == true">Assigned</td>
+                                            <td class="f-500 c-black" ng-show="data.assignedstatus == false">Not Assigned</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-body" ng-show="volunteerdatas.length === 0">
+                                <br><br><br>
+                                    <center> No volunteer added yet.</center>
+                                <br><br><br>
+                            </div>
+                    </div>        
+            </div>
+    </section>
+</section>
+
+<!--<footer id="footer" data-ng-include="'template/footer.html'"></footer>-->

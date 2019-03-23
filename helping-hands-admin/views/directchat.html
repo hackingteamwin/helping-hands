@@ -1,0 +1,73 @@
+<div class="container" ng-controller="editschoolCtrl">
+    
+         <div class="card">
+                <div class="listview lv-bordered lv-lg">
+                    <div class="lv-header-alt clearfix">
+                        <h2 class="lvh-label">CHAT WITH SCHOOL</h2>
+                        <h2 class="lvh-label" style="float: right !important;" ng-click="doTheBack()"> <i class="zmdi zmdi-chevron-left" style="font-size: 1em !important; margin-left: 0.5em !important;"></i>  Back</h2>
+                    </div>
+                </div>
+                 <div class="card-body card-padding">
+                    <div ng-if="directlength === 0"><br><br>
+                    <center><p style="font-size:18px;color:gray;">Be the first to start conversation.</p></center>
+                  </div>
+            
+                  <div ng-repeat="message in directdatas" class="message-wrapper">
+                     
+                      <div ng-if="directlength !== 0 && username !== message.username">
+                          
+                        <img class="profile-pic left" ng-src="{{message.img}}" ng-if="message.img != null">
+                        <img class="profile-pic left" src="img/profile.png" ng-if="message.img == null">
+          
+                          <div class="chat-bubble left">
+          
+                              <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                              </div>
+          
+                              <div class="message-detail">
+                                  <span class="bold">{{message.username}}</span>,
+                                  <span style="font-family:timesnewroman;">{{message.time}}</span>
+                              </div>
+          
+                          </div>
+                      </div>
+          
+                      <div ng-if="directlength !== 0 && username === message.username">
+                        
+                          <img class="profile-pic right" ng-src="{{message.img}}" ng-if="message.img != null">
+                          <img class="profile-pic right" src="img/logo.png" ng-if="message.img == null">
+                        
+                          <div class="chat-bubble right">
+          
+                              <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                              </div>
+          
+                              <div class="message-detail">
+                                  <span class="bold">{{message.username}}</span>,
+                                  <span style="font-family:timesnewroman;">{{message.time}}</span>
+                              </div>
+          
+                          </div>
+                        
+                      </div>
+          
+                      <div class="cf"></div>
+          
+                  </div><br><br>
+                  <div class="bar-stable item-input-inset message-footer">
+                      <p class="c-black f-500 m-b-20">Enter your message </p><br>
+                      <div class="form-group">
+                          <div class="fg-line">
+                             <textarea ng-model="input.text" class="form-control input-sm" autocomplete="off" minlength="1" maxlength="1500" msd-elastic>
+                             </textarea>
+                          </div>
+                      </div>
+                      <div class="footer-btn-wrap">
+                        <button class="btn btn-primary" type="submit" style="background-color: #607D8B !important;" ng-disabled="!input.text || input.text === ''" ng-click="senddirect(input)">Send Message
+                        </button>
+                      </div>
+                  </div>
+                </div>
+         </div>
+      
+</div>

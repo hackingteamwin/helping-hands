@@ -1,0 +1,43 @@
+<!--<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+      <h1 class="title" style="color:white;">Needs</h1>
+      <button class="button button-clear right" style="padding-top:5px;text-transform: capitalize !important; padding-right: 1em !important;" ng-click="closefeedbackModal()">
+        <i class="ion-android-close"></i>
+      </button>
+    </ion-header-bar>-->
+ <ion-view view-title="Help" class="layout" hide-back-button="true">
+   <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-ios-arrow-back" ng-click="goback()">
+    </div>
+    <h1 class="title" style="font-size:18px;padding-top:3px;">Help</h1>
+  </ion-header-bar>  
+  <ion-content  class="padding iniLogin">
+    <div class="padding card item-text-wrap">
+      <div class="row">
+        <div class= "col col-80">
+              <span class="font-head"> {{nowneeddata.title}} </span><br>
+              <span class="font-light"> {{nowneeddata.details}}</span><br>
+        </div>
+      </div>
+    </div>
+      <form name="form"> 
+        <div class='list list-icon authheight'>
+
+
+                  <div class='row'>
+                    <div class='col-10 rowicon'>
+                    <i class='icon ion-android-locate authicon'></i>
+                    </div>
+                    <div class='col-90 rowtext'>
+                         <label class='item item-input item-floating-label' >
+                                <textarea type='text' placeholder='Enter what you can do' ng-model='need.activitydetails' style='color: #000000;' autocomplete='off'></textarea> 
+                            </label> 
+                    </div>
+                  </div> 
+                  <button class='signupBtn' ng-click='addneed(need)' ng-disabled='!need.activitydetails '>Save</button>
+                 
+        </div> 
+      </form>
+  </ion-content>
+</ion-modal-view>

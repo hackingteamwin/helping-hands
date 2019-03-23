@@ -1,0 +1,27 @@
+<ion-view view-title="Add Improvement" class="layout" hide-back-button="true">
+ <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()">
+  </div>
+  <h1 class="title" style="font-size:18px;padding-top:3px;">Add Improvement</h1>
+</ion-header-bar>
+  <ion-content  class="padding iniLogin">
+     
+        <div class='list list-icon authheight'>
+
+                  <div class='row'>
+                    <div class='col-10 rowicon'>
+                    <i class='icon ion-android-locate authicon'></i>
+                    </div>
+                    <div class='col-90 rowtext'>
+                         <label class='item item-input item-floating-label' >
+                                <textarea type='text' placeholder='Enter Improvements' ng-model='improvement.impdetails' style='color: #000000;' autocomplete='off'></textarea> 
+                            </label> 
+                    </div>
+                  </div> 
+                  <button class='signupBtn' ng-click='addimp(improvement)' style="padding-top: 15px !important;" ng-disabled='!improvement.impdetails '>Save</button>
+                 
+        </div> 
+     
+  </ion-content>
+</ion-view>

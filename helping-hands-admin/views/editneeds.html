@@ -1,0 +1,77 @@
+<div class="container" ng-controller="editneedsCtrl">
+    
+         <div class="card">
+                <div class="listview lv-bordered lv-lg">
+                    <div class="lv-header-alt clearfix">
+                        <h2 class="lvh-label">EDIT NEEDS</h2>
+                        <h2 class="lvh-label" style="float: right !important;" ng-click="doTheBack()"> <i class="zmdi zmdi-chevron-left" style="font-size: 1em !important; margin-left: 0.5em !important;"></i>  Back</h2>
+                    </div>
+                </div>
+                 <div class="card-body card-padding">
+                    <form name="form">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Title&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <input type="text" ng-model="need.title" class="form-control input-sm" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Need Details&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <textarea ng-model="need.details" class="form-control input-sm" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-6">
+                                <div class="select">
+                                    <p class="c-black f-500 m-b-20">Village/School&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+                                    <select class="form-control"  ng-model="need.type" ng-change="getdata(need.type)" style="color: #000;" ng-disabled="true">
+                                        <option value='' disabled selected>Select Type</option>
+                                        <option value="Village">Village</option>   
+                                        <option value="School">School</option>   
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <div class="col-sm-6" ng-show="need.type == 'Village'">
+                                <div class="select">
+                                    <p class="c-black f-500 m-b-20">Select Village&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+                                    <select class="form-control"  ng-model="need.village"  style="color: #000;" ng-disabled="true" ng-change="getvname(need.village)">
+                                        <option value='' disabled selected>Select Village</option>
+                                        <option value="{{data.username}}" ng-repeat="data in villagedatas">{{data.villagename}}</option>    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" ng-show="need.type == 'School'">
+                                <div class="select">
+                                    <p class="c-black f-500 m-b-20">Select School&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+                                    <select class="form-control"  ng-model="need.school"  style="color: #000;" ng-disabled="true" ng-change="getsname(need.school)">
+                                        <option value='' disabled selected>Select School</option>
+                                        <option value="{{data.username}}" ng-repeat="data in schooldatas">{{data.schoolname}}</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div style="float:left !important;padding-left:15px;">
+                                <div class="btn-colors btn-demo">
+                                    <button class="btn btn-primary" type="submit" style="background-color: #607D8B !important;"  ng-disabled=" !need.title || !need.details ||  !need.type || (!need.village && !need.school)" ng-click="updateneeds(need)">Update Needs</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                         </form> 
+                 </div>
+         </div>
+      
+</div>

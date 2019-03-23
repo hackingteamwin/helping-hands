@@ -1,0 +1,121 @@
+<div class="container" ng-controller="editvillageCtrl">
+    
+         <div class="card">
+                <div class="listview lv-bordered lv-lg">
+                    <div class="lv-header-alt clearfix">
+                        <h2 class="lvh-label">ADD IMPROVEMENTS</h2>
+                        <h2 style="float: right !important;" class="lvh-label" ng-click="doTheBack()"> <i class="zmdi zmdi-chevron-left" style="font-size: 1em !important; margin-left: 0.5em !important;"></i>  Back</h2>
+                    </div>
+                </div>
+                 <div class="card-body card-padding">
+                    <form name="form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="c-black f-500 m-b-20">Improvements&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <textarea ng-model="improvement.impdetails" class="form-control input-sm" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div style="float:left !important;padding-left:15px;">
+                                <div class="btn-colors btn-demo">
+                                    <button class="btn btn-primary" type="submit" style="background-color: #607D8B !important;" ng-disabled=" !improvement.impdetails" ng-click="addimprovements(improvement)">Add Improvements</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                         </form> 
+                 </div>
+         </div>
+         <div class="card">
+            <div class="listview lv-bordered lv-lg">
+                <div class="lv-header-alt clearfix">
+                    <h2 class="lvh-label">VIEW IMPROVEMENTS</h2>
+                    <div class="lvh-search" data-ng-show="mactrl.listviewSearchStat" data-ng-click="mactrl.listviewSearchStat">
+                        <form action="" method="post" class="searchform" id="">
+                            <input type="text" placeholder="Start typing..." ng-model="search1" class="lvhs-input" ng-enter="">
+                        </form>
+                        <i class="lvh-search-close" data-ng-click="mactrl.listviewSearchStat = false; search1 = ''">&times;</i>
+                    </div>
+                    <ul class="lv-actions actions">
+                        <li>
+                            <a  data-ng-click="mactrl.listviewSearchStat = true">
+                                <i class="zmdi zmdi-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+         
+                 <div class="lv-body" ng-repeat="data in improvementsdatas | orderBy: '-' | filter: search1" ng-show="improvementsdatas.length !== 0">
+                        <div class="lv-item media">
+                        <div class="media-body">
+                            
+                                <div style="padding-right: 10px !important;"><b>{{data.date}}</b></div>  
+                                <div style="padding-right: 10px !important;">{{data.impdetails}}</div>                                
+                                 <div class="lv-actions actions dropdown" uib-dropdown>
+                                    <a href="" uib-dropdown-toggle aria-expanded="true">
+                                        <i class="zmdi zmdi-more-vert" style="color: #607D8B !important;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a data-toggle="modal" data-target="#edit" ng-click="getimprovement(data)"><i class="zmdi zmdi-edit" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Edit</b> </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="deleteimprovement(data)"><i class="zmdi zmdi-delete" style="font-size: 15px; color: #607D8B;"></i> &nbsp;<b>&nbsp;Delete</b> </a>
+                                        </li>
+                                    </ul>
+                                </div>                        
+                        </div>
+                        </div>
+                </div>
+                <div class="card-body" ng-show="improvementsdatas.length === 0">
+                  <br><br><br>
+                    <center>No improvements added yet.</center>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+</div>
+
+<div class="modal fade" id="edit" role="dialog" data-ng-controller="editvillageCtrl">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"><i class="zmdi zmdi-close-circle"></i></button>
+                   <h4 class="modal-title">Update Improvements</h4>
+                </div><br>
+                <div class="modal-body">
+                    <form name="form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="c-black f-500 m-b-20">Improvements&nbsp;&nbsp; <font size="2" color="red">*</font> </p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                       <textarea ng-model="impdata.impdetails" class="form-control input-sm" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div style="float:left !important;padding-left:15px;">
+                                <div class="btn-colors btn-demo">
+                                    <button class="btn btn-primary" type="submit" style="background-color: #607D8B !important;" ng-disabled=" !impdata.impdetails" data-dismiss="modal" ng-click="updateimprovement(impdata)">Update Improvements</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </form>       
+                </div>
+            </div>
+        </div>
+    </div>
